@@ -1,0 +1,22 @@
+# version format
+version: 0.2.0.{build}
+
+# enable patching of AssemblyInfo.* files
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+configuration:
+  - Debug
+  - Release
+  
+before_build:
+# This is necessary for any project that depends on a NuGet package that inject MSBuild targets (like SharpDx).
+# NuGet restore is run during the call to MSBuild, and fails to inject SharpDx.targets, causing the build to fail.
+# Running package restore before the build resolves this issue.
+  - cmd: cd "Gold Rush"
+  - cmd: nuget restore
+  - cmd: cd ..
