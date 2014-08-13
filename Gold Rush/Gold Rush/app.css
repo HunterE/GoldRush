@@ -1,0 +1,384 @@
+﻿body {
+    font-family: Consolas, monaco, monospace !important;
+    font-size: 12px;
+    background-image: url("/Images/background.png");
+    background-position: top left;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+thead {
+    font-weight: bold !important;
+}
+
+table,th,td {
+border:1px solid black;
+}
+
+a {
+    color: white;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: lightgray;
+}
+
+a:active {
+    color: grey;
+}
+
+
+.textareafill {
+    resize: none;
+    width: 98%;
+    height: 98%;
+}
+
+.progressbar {
+    width: 99%;
+    height: 70%;
+    background-color: #08E700;
+}
+
+.processorpane {
+    width: 95%;
+    margin: auto;
+}
+
+.processortable {
+    width: 100%;
+    margin: 0 auto;
+}
+
+td {
+   text-align: center;
+}
+
+.inventory {
+    width: 95%;
+    margin: auto;
+    position: relative
+}
+
+.configpanel {
+    overflow: visible;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100px;
+    margin: 0 auto;
+    width: 75%;
+    z-index: 1000;
+}
+
+.sellallitems {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+.storecategoryheader {
+    color: white;
+    background-color: #212121;
+    text-align: center;
+    font-size: 24px !important;
+    border-collapse: collapse;
+}
+
+.storecontainer {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.storecategory {
+    width: 100%;
+    background-color: #5D5D5D;
+}
+
+.storeitemfooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.storeitemcontainer {
+    width: 164px;
+    height: 164px;
+    background-color: #BDBBBB;
+    margin: 10px;
+    position: relative;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+}
+
+.storeitemheader {
+    width: 100%;
+    background-color: #8D8C8C;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.inventoryheader {
+    border: 1px solid;
+    border-radius: 10px;
+    width: 95%;
+    margin: auto;
+    height: 75px;
+    position: relative;
+}
+
+.itemquantityvalue {
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: default;
+}
+
+.itemquantitycontainer {
+    text-align: center;
+}
+
+.equipcont {
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    border: 1px solid;
+
+    position: relative;
+}
+
+.equipheader {
+    margin: auto 0;
+    text-align: center;
+}
+
+.sidebarinventory {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 18px !important;
+    color: white;
+    font-family: Consolas, monaco, monospace !important;
+}
+
+.sidebarinventory > div > img {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.itemquantityimg {
+    width: 16px;
+    height: 16px;
+}
+
+.inventoryheaderimg {
+    height: 60px;
+    width: 60px;
+    float: left;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.greenprog {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: solid #808080;
+    border-radius: 10px;
+}
+
+.greenprog::-moz-progress-bar {
+    border-radius: 5px;
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(43,194,83) 37%,
+		rgb(84,240,84) 69%
+	);
+}
+
+.greenprog::-webkit-progress-value {
+	border-radius: 5px;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgb(43,194,83)),
+		color-stop(1, rgb(84,240,84))
+	);
+	background-image: -webkit-linear-gradient(
+		center bottom,
+		rgb(43,194,83) 37%,
+		rgb(84,240,84) 69%
+	);
+}
+
+.inventoryheadercontrols {
+    float: right;
+    margin-right: 10px;
+    margin-top: 25px;
+}
+
+.configtable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.configtableitem {
+    width: 16%;
+}
+
+.configtablecheck {
+    width: 4%;
+}
+
+.configtableitemempty {
+    width: 16%;
+    border: none;
+}
+
+.configtablecheckempty {
+    width: 4%;
+    border: none;
+}
+
+.item {
+    
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    width: 125px;
+    height: 125px;
+    margin: 3px;
+}
+
+.item:hover {
+    opacity: .85;
+}
+
+.item:active {
+    opacity: .75;
+}
+
+.itemheader {
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.itemfooter {
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.itemimage {
+    width: 40%;
+    height: 40%;
+}
+
+.tabs {
+    margin-left: 300px;
+}
+
+.sidebar {
+    float: left;
+    width: 285px;
+}
+
+.rock {
+    -moz-transform:scale(0.8);
+    -webkit-transform:scale(0.8);
+    transform:scale(0.8);
+}
+
+.rock:hover {
+    -moz-transform:scale(0.85);
+    -webkit-transform:scale(0.85);
+    transform:scale(0.85);
+}
+
+.rock:active {
+   -moz-transform:scale(0.9);
+    -webkit-transform:scale(0.9);
+    transform:scale(0.9); 
+}
+
+
+.ui-tabs-panel {
+    background: none
+}
+
+.ui-widget-header {
+    color: #222222;
+    font-weight: bold;
+    height:22px
+}
+
+.ui-widget-header ul {
+    height:20px;   
+}
+
+.ui-tabs .ui-tabs-nav li {
+    height:20px;
+    font-size:16px;
+
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    position:relative;
+    top:-6px  
+}
+
+*:focus {
+    outline: none;
+}
+
+.processorrequirements {
+    font-size: 22px;
+}
+
+.processorrequirements > div > img {
+    width: 24px !important;
+    height: 24px !important; 
+}
+
+.progressbartext {
+    position: absolute;
+    width: 100%;
+    top: 25%;
+    right: 0;
+    z-index: 1000;
+}
+
+.progressbarcontainer {
+    position: relative;
+}
