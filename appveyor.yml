@@ -1,4 +1,3 @@
-# version format
 version: 0.2.0.{build}
 
 # enable patching of AssemblyInfo.* files
@@ -20,3 +19,21 @@ before_build:
   - cmd: cd "Gold Rush"
   - cmd: nuget restore
   - cmd: cd ..
+  
+build:
+  publish_wap_xcopy: true
+  
+deploy:
+  - provider: FTP
+    server: 
+      secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
+    username: 
+      secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
+    password:
+      secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
+    #folder: does default to recommended dir?
+    enable_sll: true
+    application: # app artifact
+    on:
+      configuration: Release
+      branch: master
