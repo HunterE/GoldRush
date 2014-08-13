@@ -20,9 +20,6 @@ before_build:
   - cmd: nuget restore
   - cmd: cd ..
   
-build:
-  publish_wap_xcopy: true
-  
 deploy:
   - provider: FTP
     server: 
@@ -33,7 +30,7 @@ deploy:
       secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
     #folder: does default to recommended dir?
     enable_sll: true
-    application: # app artifact
+    #application: # app artifact
     on:
       configuration: Release
-      branch: master
+      branch: staging
