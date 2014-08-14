@@ -19,9 +19,8 @@ before_build:
   - cmd: cd "Gold Rush"
   - cmd: nuget restore
   - cmd: cd ..
-  
-- 
-  branches:
+
+- branches:
     only: feature-appveyor
   configuration: Release
   deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
