@@ -21,7 +21,7 @@ before_build:
   - cmd: cd "Gold Rush"
   - cmd: nuget restore
   - cmd: cd ..
-  - cmd: sourceanalyzer -clean
+  #- cmd: sourceanalyzer -clean
 
 #branches:
 #  only: feature-appveyor
