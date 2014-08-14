@@ -53,7 +53,7 @@ deploy:
     #application: # app artifact
     on:
       configuration: Release
-      branch: staging
+      branch: feature-appveyor
     
 
 #branches:
