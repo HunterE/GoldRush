@@ -38,7 +38,7 @@ environment:
 artifacts:
   - path: "Gold Rush"
     name: ProjectFolder
-	
+
 deploy:
   - provider: FTP
     artifact: ProjectFolder
