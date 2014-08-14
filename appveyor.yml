@@ -21,6 +21,7 @@ before_build:
   - cmd: cd "Gold Rush"
   - cmd: nuget restore
   - cmd: cd ..
+  - cmd: sourceanalyzer -clean
 
 #branches:
 #  only: feature-appveyor
@@ -39,4 +40,4 @@ branches:
     - feature-appveyor
   configuration: Release
   
-deploy_script: chdir & if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% / "/Gold Rush/Gold Rush"
+deploy_script: if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% -R "/Gold Rush/Gold Rush"
