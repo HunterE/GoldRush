@@ -35,9 +35,30 @@ environment:
     StagingPass:
       secure: HqPvEYuYGf9g31Rt+GMQ6Q==
 
-branches:
-  only:
-    - feature-appveyor
-  configuration: Release
+artifacts:
+  - path: Gold Rush
+    name: ProjectFolder
+	
+deploy:
+  - provider: FTP
+    artifact: ProjectFolder
+    server: 
+      secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
+    username: 
+      secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
+    password:
+      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
+    #folder: does default to recommended dir?
+    enable_sll: true
+    #application: # app artifact
+    on:
+      configuration: Release
+      branch: staging
+    
+
+#branches:
+#  only:
+#    - feature-appveyor
+#  configuration: Release
   
-deploy_script: cd "Gold Rush\Gold Rush" & if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% "" ""
+#deploy_script: cd "Gold Rush\Gold Rush" & if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% "" ""
