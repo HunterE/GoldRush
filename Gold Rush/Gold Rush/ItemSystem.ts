@@ -28,7 +28,7 @@
         this.recipes = new Array<Recipe>();
     }
 
-    RegisterItem(item: Item) {
+    RegisterItem(item: Item){
         item.SetID(this.lowestUnregisteredId);
         this.items[this.lowestUnregisteredId] = item;
         this.lowestUnregisteredId++;
