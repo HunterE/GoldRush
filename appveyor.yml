@@ -20,17 +20,16 @@ before_build:
   - cmd: nuget restore
   - cmd: cd ..
   
-deploy:
-  - provider: FTP
-    server: 
+- 
+  branches:
+    only: feature-appveyor
+  configuration: Release
+  deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
+
+environment:
+    StagingServer: 
       secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
-    username: 
+    StagingUser: 
       secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
-    password:
+    StagingPass:
       secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
-    #folder: does default to recommended dir?
-    enable_sll: true
-    #application: # app artifact
-    on:
-      configuration: Release
-      branch: staging
