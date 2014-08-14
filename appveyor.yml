@@ -40,4 +40,4 @@ branches:
     - feature-appveyor
   configuration: Release
   
-deploy_script: if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% beta "/Gold Rush/Gold Rush"
+deploy_script: if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% beta "/Gold Rush/Gold Rush/"
