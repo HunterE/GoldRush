@@ -36,7 +36,7 @@ environment:
       secure: HqPvEYuYGf9g31Rt+GMQ6Q==
 
 artifacts:
-  - path: "Gold Rush/*"
+  - path: "Gold Rush\*.*"
     name: ProjectFolder
 
 deploy:
