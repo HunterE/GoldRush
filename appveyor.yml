@@ -32,10 +32,8 @@ environment:
     StagingPass:
       secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
 
--
-  branches:
-    only:
-      - master
-
+branches:
+  only:
+    - master
   configuration: Release
   deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
