@@ -9,7 +9,6 @@ assembly_info:
   assembly_informational_version: "{version}"
 
 configuration:
-  - Debug
   - Release
   
 before_build:
@@ -36,4 +35,6 @@ branches:
   only:
     - feature-appveyor
   configuration: Release
-  deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
+
+  
+deploy_script: if $(APPVEYOR_REPO_BRANCH)==feature-appveyor ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
