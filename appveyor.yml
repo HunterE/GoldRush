@@ -32,7 +32,7 @@ environment:
     StagingUser: 
       secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
     StagingPass:
-      secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
+      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
 
 branches:
   only:
