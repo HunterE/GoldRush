@@ -20,10 +20,9 @@ before_build:
   - cmd: nuget restore
   - cmd: cd ..
 
-- branches:
-    only: feature-appveyor
-  configuration: Release
-  deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
+#branches:
+#  only: feature-appveyor
+#  configuration: Release
 
 environment:
     StagingServer: 
@@ -32,3 +31,11 @@ environment:
       secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
     StagingPass:
       secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
+
+-
+  branches:
+    only:
+      - master
+
+  configuration: Release
+  deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
