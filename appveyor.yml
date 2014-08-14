@@ -42,7 +42,7 @@ artifacts:
 deploy:
   - provider: FTP
     artifact: ProjectFolder
-    server: 
+    server:
       secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
     username: 
       secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
