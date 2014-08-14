@@ -1,7 +1,7 @@
 version: 0.2.0.{build}
 
-install:
-  - cinst ncftp
+#install:
+#  - cinst ncftp
 
 # enable patching of AssemblyInfo.* files
 assembly_info:
@@ -36,7 +36,7 @@ environment:
       secure: HqPvEYuYGf9g31Rt+GMQ6Q==
 
 artifacts:
-  - path: 'Gold Rush\\Gold Rush\\*'
+  - path: 'Gold Rush\\Gold Rush\\'
     name: ProjectFolder
 
 deploy:
