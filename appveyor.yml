@@ -34,6 +34,6 @@ environment:
 
 branches:
   only:
-    - master
+    - feature-appveyor
   configuration: Release
   deploy_script: ncftpput -R -v -u "$(StagingUser)" -p "$(StagingPass)" $(StagingServer) / "/Gold Rush/Gold Rush"
