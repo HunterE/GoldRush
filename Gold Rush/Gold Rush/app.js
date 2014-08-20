@@ -15,6 +15,8 @@
 ///<reference path="AchievementSystem.ts"/>
 ///<reference path="Scripts/UI/HeaderUI.ts"/>
 ///<reference path="Scripts/UI/AchievementUI.ts"/>
+///<reference path="PrestigeSystem.ts"/>
+///<reference path="Scripts/UI/PrestigeUI.ts"/>
 var game;
 var data;
 
@@ -27,8 +29,9 @@ var Game = (function () {
         this.buffSystem = new BuffSystem();
         this.statisticSystem = new StatisticSystem();
         this.achievementSystem = new AchievementSystem();
+        this.prestigeSystem = new PrestigeSystem();
 
-        data = new Data(this.itemSystem, this.gathererSystem, this.upgradeSystem, this.processorSystem, this.buffSystem, this.statisticSystem, this.achievementSystem);
+        data = new Data(this.itemSystem, this.gathererSystem, this.upgradeSystem, this.processorSystem, this.buffSystem, this.statisticSystem, this.achievementSystem, this.prestigeSystem);
 
         this.inventory = new Inventory(this.itemSystem);
         this.inventoryUI = new InventoryUI(this.inventory, this.buffSystem);
@@ -38,6 +41,7 @@ var Game = (function () {
         this.statsUI = new StatisticsUI(this.itemSystem);
         this.headerUI = new HeaderUI(data);
         this.achievementUI = new AchievementUI(this.achievementSystem);
+        this.prestigeUI = new PrestigeUI(this.prestigeSystem);
 
         this.upgradeSystem.ActivateOnLoad(); // Activate upgrades we've already purchased
     }
@@ -58,6 +62,7 @@ var Game = (function () {
         game.statsUI.Update();
         game.headerUI.update();
         game.achievementUI.Update();
+        game.prestigeUI.update();
 
         data.save();
     };
@@ -66,8 +71,10 @@ var Game = (function () {
 
 window.onload = function () {
     game = new Game();
+    game.prestigeSystem.ActivateRewards(); // Activate prestige rewards if any exist.
 
     game.tick();
+    document.getElementById("preloader").style.display = "none";
     setInterval(game.tick, 1000); // Start ticking
 };
 
@@ -86,5 +93,9 @@ function formatNumber(n) {
 
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function hidePreloader() {
+    document.getElementById("preloader").style.display = "none";
 }
 //# sourceMappingURL=app.js.map

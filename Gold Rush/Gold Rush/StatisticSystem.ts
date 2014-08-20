@@ -50,3 +50,4 @@ class Statistic {
 
 var StatVersionNumber = new Statistic();
 var StatRockClicked = new Statistic();
+var StatTimePlayed = new Statistic();

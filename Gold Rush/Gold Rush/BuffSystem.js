@@ -11,6 +11,15 @@
     };
 
     BuffSystem.prototype.Reset = function () {
+        if (this.items) {
+            for (var i = 0; i < this.items.length; ++i) {
+                if (this.items[i].RemainingTime > 0) {
+                    this.items[i].Deactivate();
+                    this.items[i].RemainingTime = 0;
+                }
+            }
+        }
+
         this.lowestUnregisteredId = 0;
         this.items = new Array();
     };

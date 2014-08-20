@@ -29,6 +29,15 @@ var UpgradeSystem = (function () {
     };
 
     UpgradeSystem.prototype.Reset = function () {
+        if (this.items) {
+            for (var i = 0; i < this.items.length; ++i) {
+                if (this.items[i].Active) {
+                    for (var x = 0; x < this.items[i].Effect.length; ++x) {
+                        this.items[i].Effect[x].deactivate();
+                    }
+                }
+            }
+        }
         this.lowestUnregisteredId = 0;
         this.items = new Array();
     };
@@ -154,6 +163,19 @@ var OreUpgradeEffect = (function (_super) {
         }
     };
 
+    OreUpgradeEffect.prototype.deactivate = function () {
+        for (var gatherer in this.AffectedGatherers) {
+            for (var i = 0; i < this.AddedOre.length; ++i) {
+                for (var x = 0; x < this.AffectedGatherers[gatherer].MineableOre.length; ++x) {
+                    if (this.AddedOre[i] === this.AffectedGatherers[gatherer].MineableOre[x]) {
+                        this.AffectedGatherers[gatherer].MineableOre.splice(x, 1);
+                    }
+                }
+            }
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    };
+
     OreUpgradeEffect.prototype.tooltip = function () {
         var tooltip = "Discovers: ";
         var names = Array();
@@ -181,6 +203,13 @@ var EfficiencyUpgradeEffect = (function (_super) {
             } else {
                 this.AffectedGatherers[gatherer].Efficiency += this.Efficiency;
             }
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    };
+
+    EfficiencyUpgradeEffect.prototype.deactivate = function () {
+        for (var gatherer in this.AffectedGatherers) {
+            this.AffectedGatherers[gatherer].Efficiency -= this.Efficiency;
             this.AffectedGatherers[gatherer].CalculateMiningStuff();
         }
     };
@@ -249,6 +278,13 @@ var ProbabilityUpgradeEffect = (function (_super) {
         }
     };
 
+    ProbabilityUpgradeEffect.prototype.deactivate = function () {
+        for (var gatherer in this.AffectedGatherers) {
+            this.AffectedGatherers[gatherer].ProbabilityModifier -= this.Probability;
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    };
+
     ProbabilityUpgradeEffect.prototype.tooltip = function () {
         var tooltip = "Increases chance of gathering rare resources by " + (this.Probability * 100).toString() + "% for ";
         var names = Array();
@@ -303,6 +339,10 @@ var ManufacturerUnlockUpgradeEffect = (function (_super) {
         this.ActivatedProcessor.Enabled = true;
     };
 
+    ManufacturerUnlockUpgradeEffect.prototype.deactivate = function () {
+        this.ActivatedProcessor.Enabled = false;
+    };
+
     ManufacturerUnlockUpgradeEffect.prototype.tooltip = function () {
         var tooltip = "Unlocks: " + this.ActivatedProcessor.Name;
         return tooltip;
@@ -344,6 +384,12 @@ var ManufacturerCapacityUpgradeEffect = (function (_super) {
     ManufacturerCapacityUpgradeEffect.prototype.effect = function () {
         for (var i = 0; i < this.AffectedProcessors.length; ++i) {
             this.AffectedProcessors[i].Capacity += this.Capacity;
+        }
+    };
+
+    ManufacturerCapacityUpgradeEffect.prototype.deactivate = function () {
+        for (var i = 0; i < this.AffectedProcessors.length; ++i) {
+            this.AffectedProcessors[i].Capacity -= this.Capacity;
         }
     };
 

@@ -26,6 +26,15 @@
     }
 
     Reset() {
+        if (this.items) {
+            for (var i = 0; i < this.items.length; ++i) {
+                if (this.items[i].Active) {
+                    for (var x = 0; x < this.items[i].Effect.length; ++x) {
+                        this.items[i].Effect[x].deactivate();
+                    }
+                }
+            }
+        }
         this.lowestUnregisteredId = 0;
         this.items = new Array<Upgrade>();
     }
@@ -167,6 +176,19 @@ class OreUpgradeEffect extends UpgradeEffect {
         }
     }
 
+    deactivate() {
+        for (var gatherer in this.AffectedGatherers) {
+            for (var i = 0; i < this.AddedOre.length; ++i) {
+                for (var x = 0; x < this.AffectedGatherers[gatherer].MineableOre.length; ++x) {
+                    if (this.AddedOre[i] === this.AffectedGatherers[gatherer].MineableOre[x]) {
+                        this.AffectedGatherers[gatherer].MineableOre.splice(x,1);
+                    }
+                }
+            }
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    }
+
     tooltip() {
         var tooltip = "Discovers: ";
         var names = Array<String>();
@@ -196,6 +218,13 @@ class EfficiencyUpgradeEffect extends UpgradeEffect {
             } else {
                 this.AffectedGatherers[gatherer].Efficiency += this.Efficiency;
             }
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    }
+
+    deactivate() {
+        for (var gatherer in this.AffectedGatherers) {
+            this.AffectedGatherers[gatherer].Efficiency -= this.Efficiency;
             this.AffectedGatherers[gatherer].CalculateMiningStuff();
         }
     }
@@ -268,6 +297,13 @@ class ProbabilityUpgradeEffect extends UpgradeEffect { // ONLY 1 PROBABILITY UPG
         }
     }
 
+    deactivate() {
+        for (var gatherer in this.AffectedGatherers) {
+            this.AffectedGatherers[gatherer].ProbabilityModifier -= this.Probability;
+            this.AffectedGatherers[gatherer].CalculateMiningStuff();
+        }
+    }
+
     tooltip(): string {
         var tooltip = "Increases chance of gathering rare resources by " + (this.Probability * 100).toString() + "% for ";
         var names = Array<String>();
@@ -325,6 +361,10 @@ class ManufacturerUnlockUpgradeEffect extends UpgradeEffect {
         this.ActivatedProcessor.Enabled = true;
     }
 
+    deactivate() {
+        this.ActivatedProcessor.Enabled = false;
+    }
+
     tooltip(): string {
         var tooltip = "Unlocks: " + this.ActivatedProcessor.Name;
         return tooltip;
@@ -369,6 +409,12 @@ class ManufacturerCapacityUpgradeEffect extends UpgradeEffect {
     effect() {
         for (var i = 0; i < this.AffectedProcessors.length; ++i) {
             this.AffectedProcessors[i].Capacity += this.Capacity;
+        }
+    }
+
+    deactivate() {
+        for (var i = 0; i < this.AffectedProcessors.length; ++i) {
+            this.AffectedProcessors[i].Capacity -= this.Capacity;
         }
     }
 
