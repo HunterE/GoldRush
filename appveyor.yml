@@ -36,24 +36,24 @@ environment:
       secure: HqPvEYuYGf9g31Rt+GMQ6Q==
 
 artifacts:
-  - path: 'Gold Rush\\Gold Rush\\**\*'
+  - path: 'Gold Rush\\Gold Rush\\'
     name: ProjectFolder
 
-deploy:
-  - provider: FTP
-    artifact: ProjectFolder
-    server:
-      secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
-    username: 
-      secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
-    password:
-      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
-    #folder: does default to recommended dir?
-    enable_sll: true
-    #application: # app artifact
-    on:
-      configuration: Release
-      branch: feature-appveyor
+#deploy:
+#  - provider: FTP
+#    artifact: ProjectFolder
+#    server:
+#      secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
+#    username: 
+#      secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
+#    password:
+#      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
+#    #folder: does default to recommended dir?
+#    enable_sll: true
+#    #application: # app artifact
+#    on:
+#      configuration: Release
+#      branch: feature-appveyor
     
 
 #branches:
