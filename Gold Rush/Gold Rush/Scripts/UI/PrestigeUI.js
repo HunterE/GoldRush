@@ -70,15 +70,22 @@
                 var row = body.insertRow(body.rows.length);
                 var prog = document.createElement("div");
                 prog.id = "prestigereqprog" + r;
+<<<<<<< HEAD
                 prog.style.height = "8px";
                 prog.style.border = "solid black 1px";
 
+=======
+                row.appendChild(prog);
+>>>>>>> upstream/dev
                 row.style.textAlign = "center";
                 row.style.fontSize = "18px";
 
                 row.id = "prestigereq" + r;
                 row.textContent = requirement.GetTooltip();
+<<<<<<< HEAD
                 row.appendChild(prog);
+=======
+>>>>>>> upstream/dev
             }
 
             nextPrestigeReqPanel.appendChild(table);
@@ -149,6 +156,7 @@
                 var req = nextPrestige.Requirements[r];
 
                 //reqrow.style.backgroundColor = (req.Condition.condition() ? "green" : "white");
+<<<<<<< HEAD
                 var progdiv = document.getElementById("prestigereqprog" + r);
                 var prog = Math.min(100, Math.max(req.Condition.getPercentage() * 100, 0));
 
@@ -156,6 +164,13 @@
                 progdiv.style.display = (prog > 0 ? "block" : "none");
                 progdiv.style.backgroundColor = (prog > 40 ? (prog < 100 ? "#FFC200" : "green") : "red");
                 progdiv.textContent = "";
+=======
+                var progdiv = document.getElementById("prestigereqprog");
+                var prog = req.Condition.getprogress() * 100;
+
+                progdiv.style.width = prog + "%";
+                progdiv.style.backgroundColor = (prog > 40 ? (prog < 100 ? "yellow" : "green") : "red");
+>>>>>>> upstream/dev
             }
 
             var btn = document.getElementById("nextprestigebutton").style.display = (this.prestigeSystem.CheckRequirements(nextPrestige) ? "block" : "none");

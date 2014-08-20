@@ -1,5 +1,8 @@
 version: 0.2.0.{build}
 
+#install:
+#  - cinst ncftp
+
 # enable patching of AssemblyInfo.* files
 assembly_info:
   patch: true
@@ -9,7 +12,6 @@ assembly_info:
   assembly_informational_version: "{version}"
 
 configuration:
-  - Debug
   - Release
   
 before_build:
@@ -19,18 +21,44 @@ before_build:
   - cmd: cd "Gold Rush"
   - cmd: nuget restore
   - cmd: cd ..
-  
-deploy:
-  - provider: FTP
-    server: 
+  #- cmd: sourceanalyzer -clean
+
+#branches:
+#  only: feature-appveyor
+#  configuration: Release
+
+environment:
+    StagingServer: 
       secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
-    username: 
+    StagingUser: 
       secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
-    password:
-      secure: gAuX93BArgXIeBCv2SCvDLbeEs+PmaBFqSkDBxFQ07o=
-    #folder: does default to recommended dir?
-    enable_sll: true
-    #application: # app artifact
-    on:
-      configuration: Release
-      branch: staging
+    StagingPass:
+      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
+
+artifacts:
+  - path: 'Gold Rush\\Gold Rush\\'
+    name: ProjectFolder
+
+#deploy:
+#  - provider: FTP
+#    artifact: ProjectFolder
+#    server:
+#      secure: qhbRgh95uxWbExYwTy/kljHkNPXXNnCRipxSaTxQ++E=
+#    username: 
+#      secure: UsFvnkJmjGGxRqYxW0bemqgK+Izvr1mj29L8JMSjGUI=
+#    password:
+#      secure: HqPvEYuYGf9g31Rt+GMQ6Q==
+#    #folder: does default to recommended dir?
+#    enable_sll: true
+#    #application: # app artifact
+#    on:
+#      configuration: Release
+#      branch: feature-appveyor
+    
+
+#branches:
+#  only:
+#    - feature-appveyor
+#  configuration: Release
+  
+#deploy_script: cd "Gold Rush\Gold Rush" & if "%APPVEYOR_REPO_BRANCH%"=="feature-appveyor" ncftpput -R -v -u "%StagingUser%" -p "%StagingPass%" %StagingServer% "" ""
