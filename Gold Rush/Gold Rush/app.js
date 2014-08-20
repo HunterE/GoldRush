@@ -94,4 +94,8 @@ function formatNumber(n) {
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function hidePreloader() {
+    document.getElementById("preloader").style.display = "none";
+}
 //# sourceMappingURL=app.js.map

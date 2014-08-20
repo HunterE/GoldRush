@@ -74,6 +74,7 @@
                 var row = <HTMLTableRowElement>body.insertRow(body.rows.length);
                 var prog = document.createElement("div");
                 prog.id = "prestigereqprog" + r;
+                row.appendChild(prog);
                 row.style.textAlign = "center";
                 row.style.fontSize = "18px";
 
