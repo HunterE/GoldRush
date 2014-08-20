@@ -87,6 +87,7 @@ var StoreUI = (function () {
         }
         if (gu === "Upgrade") {
             storeItemContainer.setAttribute("title", this.upgradeSystem.items[id].GetTooltip());
+
             storeItemButton.addEventListener("click", function () {
                 game.upgradeSystem.Purchase(id);
                 game.storeUI.updateStore();

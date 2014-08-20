@@ -6,9 +6,13 @@
     <title>Gold Rush</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
     <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css" />
-    <script src="app.js"></script>
+    
+    <script src="Pace.js"></script>
     <script src="/Scripts/jquery-2.1.1.js"></script>
     <script src="/Scripts/jquery-ui-1.10.4.js"></script>
+    
+    <script src="app.js"></script>
+
     <script src="Data.js"></script>
     <script src="/Scripts/UI/UIHelper.js"></script>
     <script src="/Scripts/UI/InventoryUI.js"></script>
@@ -22,21 +26,18 @@
     <script src="Inventory.js"></script>
     <script src="StatisticSystem.js"></script>
     <script src="/Scripts/UI/CraftingUI.js"></script>
-    <script src="/Scripts/UI/EquipmentUI.js"></script> 
+    <script src="/Scripts/UI/EquipmentUI.js"></script>
     <script src="AchievementSystem.js"></script>
     <script src="/Scripts/UI/StatisticsUI.js"></script>
     <script src="lz-string-1.3.3-min.js"></script>
     <script src="/Scripts/UI/HeaderUI.js"></script>
     <script src="/Scripts/UI/AchievementUI.js"></script>
+    <script src="PrestigeSystem.js"></script>
+    <script src="/Scripts/UI/PrestigeUI.js"></script>
 
     <script>
         $(function () {
             $("#tabs").tabs();
-        });
-        $(function () {
-            $(document).tooltip({
-                track: true
-            });
         });
     </script>
     <script>
@@ -51,6 +52,11 @@
     </script>
 </head>
     <body>
+        <div id="preloader" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; background-color: white;">
+            <div style="text-align: center; margin-top:100px">
+                Loading. Please wait.
+            </div>
+        </div>
         <div>
             <div style="width:15px; display: inline-block"></div>
             <a href="http://www.reddit.com/r/goldrushgame" target="_blank" style="text-decoration: none">Reddit</a>
@@ -78,28 +84,35 @@
                         <li><a href="#tabs-3">Store</a></li>
                         <li><a href="#tabs-4">Crafting</a></li>
                         <li><a href="#tabs-Achievements">Achievements</a></li>
+                        <li><a href="#tabs-Prestige">Prestige</a></li>
                     </ul>
-                    <div id="tabs-1">
+                    <div id="tabs-1" style="display:block">
                     </div>
-                    <div id="tabs-2">
+                    <div id="tabs-2" style="display:none">
                         <div>
                             <span>This page will be overhauled. It is currently for testing purposes.</span>
                         </div>
                     </div>
-                    <div id="tabs-3">
+                    <div id="tabs-3" style="display:none">
 
                     </div>
-                    <div id="tabs-4">
-                   
+                    <div id="tabs-4" style="display:none">
+
                     </div>
-                    <div id="tabs-Statistics">
-                    
+                    <div id="tabs-Statistics" style="display:none">
+
                     </div>
-                    <div id="tabs-Achievements">
-                    
+                    <div id="tabs-Achievements" style="display:none">
+
+                    </div>
+                    <div id="tabs-Prestige" style="display:none">
+
                     </div>
                 </div>
             </div>
         </div>
+
+        
+
     </body>
 </html>

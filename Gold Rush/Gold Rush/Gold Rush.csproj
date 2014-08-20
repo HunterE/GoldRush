@@ -81,6 +81,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="index.html" />
+    <Content Include="Pace.js" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -99,6 +100,7 @@
     <TypeScriptCompile Include="Data.ts" />
     <TypeScriptCompile Include="Inventory.ts" />
     <TypeScriptCompile Include="ItemSystem.ts" />
+    <TypeScriptCompile Include="PrestigeSystem.ts" />
     <TypeScriptCompile Include="ProcessorSystem.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\lz-string\lz-string.d.ts" />
@@ -107,6 +109,7 @@
     <TypeScriptCompile Include="Scripts\UI\EquipmentUI.ts" />
     <TypeScriptCompile Include="Scripts\UI\HeaderUI.ts" />
     <TypeScriptCompile Include="Scripts\UI\InventoryUI.ts" />
+    <TypeScriptCompile Include="Scripts\UI\PrestigeUI.ts" />
     <TypeScriptCompile Include="Scripts\UI\ProcessorUI.ts" />
     <TypeScriptCompile Include="Scripts\UI\StatisticsUI.ts" />
     <TypeScriptCompile Include="Scripts\UI\StoreUI.ts" />
