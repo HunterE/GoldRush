@@ -242,10 +242,10 @@ var Silver_bar_processor_recipe = new ProcessorRecipe().SetRecipe(Silver_bar_rec
 var Gold_bar_processor_recipe = new ProcessorRecipe().SetRecipe(Gold_bar_recipe).SetDuration(75);
 var Titanium_bar_processor_recipe = new ProcessorRecipe().SetRecipe(Titanium_bar_recipe).SetDuration(165);
 
-var Smelting_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Smelting_Potion_recipe).SetDuration(10);
-var Clicking_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Clicking_Potion_recipe).SetDuration(10);
-var Charming_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Charming_Potion_recipe).SetDuration(10);
-var Alchemy_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Alchemy_Potion_recipe).SetDuration(10);
+var Smelting_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Smelting_Potion_recipe).SetDuration(15);
+var Clicking_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Clicking_Potion_recipe).SetDuration(15);
+var Charming_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Charming_Potion_recipe).SetDuration(15);
+var Alchemy_Potion_processor_recipe = new ProcessorRecipe().SetRecipe(Alchemy_Potion_recipe).SetDuration(15);
 
 // Item crafting recipes
 var Copper_Wire_Recipe = new Recipe();

@@ -44,4 +44,5 @@ var Statistic = (function () {
 
 var StatVersionNumber = new Statistic();
 var StatRockClicked = new Statistic();
+var StatTimePlayed = new Statistic();
 //# sourceMappingURL=StatisticSystem.js.map

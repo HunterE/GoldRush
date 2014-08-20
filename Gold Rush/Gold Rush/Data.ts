@@ -1,18 +1,13 @@
 ﻿class Data {
-    constructor(items: ItemSystem, gatherers: GathererSystem, upgrades: UpgradeSystem, processors: ProcessorSystem, buffs: BuffSystem, stats: StatisticSystem, achievements: AchievementSystem) {
+    constructor(items: ItemSystem, gatherers: GathererSystem, upgrades: UpgradeSystem, processors: ProcessorSystem, buffs: BuffSystem, stats: StatisticSystem, achievements: AchievementSystem, prestige: PrestigeSystem) {
         this.itemSystem = items;
-
         this.gathererSystem = gatherers;
-
         this.upgradeSystem = upgrades;
-
         this.processorSystem = processors;
-
         this.buffSystem = buffs;
-
         this.statisticSystem = stats;
-
         this.achievementSystem = achievements;
+        this.prestigeSystem = prestige;
 
         this.initializeData();
         this.load();
@@ -24,6 +19,7 @@
     buffSystem: BuffSystem;
     statisticSystem: StatisticSystem;
     achievementSystem: AchievementSystem;
+    prestigeSystem: PrestigeSystem
 
     invconfigsave = new Array<InventoryConfigSave>();
 
@@ -47,28 +43,28 @@
     public InitializeItemSystem(items: ItemSystem) {
         items.Reset();
 
-        items.RegisterItem(Stone = Stone.SetName("Stone").SetQuantity(0).SetAlltime(0).SetValue(1).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(1500000));
-        items.RegisterItem(Copper = Copper.SetName("Copper").SetQuantity(0).SetAlltime(0).SetValue(5).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(750000));
-        items.RegisterItem(Iron= Iron.SetName("Iron").SetQuantity(0).SetAlltime(0).SetValue(20).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(250000));
-        items.RegisterItem(Silver=Silver.SetName("Silver").SetQuantity(0).SetAlltime(0).SetValue(100).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ore).SetProbability(100000));
-        items.RegisterItem(Gold=Gold.SetName("Gold").SetQuantity(0).SetAlltime(0).SetValue(1000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ore).SetProbability(50000));
+        items.RegisterItem(Stone = Stone.SetName("Stone").SetQuantity(0).SetAlltime(0).SetValue(1).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(2000000));
+        items.RegisterItem(Copper = Copper.SetName("Copper").SetQuantity(0).SetAlltime(0).SetValue(5).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(1000000));
+        items.RegisterItem(Iron= Iron.SetName("Iron").SetQuantity(0).SetAlltime(0).SetValue(20).SetRarity(ItemRarity.Common).SetType(ItemType.Ore).SetProbability(500000));
+        items.RegisterItem(Silver=Silver.SetName("Silver").SetQuantity(0).SetAlltime(0).SetValue(100).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ore).SetProbability(250000));
+        items.RegisterItem(Gold=Gold.SetName("Gold").SetQuantity(0).SetAlltime(0).SetValue(1000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ore).SetProbability(100000));
         items.RegisterItem(Uranium=Uranium.SetName("Uranium").SetQuantity(0).SetAlltime(0).SetValue(5000).SetRarity(ItemRarity.Rare).SetType(ItemType.Ore).SetProbability(5000));
         items.RegisterItem(Titanium=Titanium.SetName("Titanium").SetQuantity(0).SetAlltime(0).SetValue(1000000).SetRarity(ItemRarity.Epic).SetType(ItemType.Ore).SetProbability(25));
-        items.RegisterItem(Opal=Opal.SetName("Opal").SetQuantity(0).SetAlltime(0).SetValue(2000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Gem).SetProbability(3000));
-        items.RegisterItem(Jade=Jade.SetName("Jade").SetQuantity(0).SetAlltime(0).SetValue(5000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Gem).SetProbability(2000));
-        items.RegisterItem(Topaz=Topaz.SetName("Topaz").SetQuantity(0).SetAlltime(0).SetValue(10000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(1000));
-        items.RegisterItem(Sapphire=Sapphire.SetName("Sapphire").SetQuantity(0).SetAlltime(0).SetValue(25000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(750));
-        items.RegisterItem(Emerald=Emerald.SetName("Emerald").SetQuantity(0).SetAlltime(0).SetValue(50000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(500));
-        items.RegisterItem(Ruby=Ruby.SetName("Ruby").SetQuantity(0).SetAlltime(0).SetValue(100000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(250));
-        items.RegisterItem(Onyx=Onyx.SetName("Onyx").SetQuantity(0).SetAlltime(0).SetValue(250000).SetRarity(ItemRarity.Epic).SetType(ItemType.Gem).SetProbability(125));
-        items.RegisterItem(Quartz=Quartz.SetName("Quartz").SetQuantity(0).SetAlltime(0).SetValue(500000).SetRarity(ItemRarity.Epic).SetType(ItemType.Gem).SetProbability(10));
-        items.RegisterItem(Diamond=Diamond.SetName("Diamond").SetQuantity(0).SetAlltime(0).SetValue(5000000).SetRarity(ItemRarity.Legendary).SetType(ItemType.Gem).SetProbability(5));
+        items.RegisterItem(Opal=Opal.SetName("Opal").SetQuantity(0).SetAlltime(0).SetValue(2000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Gem).SetProbability(5000));
+        items.RegisterItem(Jade=Jade.SetName("Jade").SetQuantity(0).SetAlltime(0).SetValue(5000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Gem).SetProbability(4000));
+        items.RegisterItem(Topaz=Topaz.SetName("Topaz").SetQuantity(0).SetAlltime(0).SetValue(10000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(3000));
+        items.RegisterItem(Sapphire=Sapphire.SetName("Sapphire").SetQuantity(0).SetAlltime(0).SetValue(25000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(2000));
+        items.RegisterItem(Emerald=Emerald.SetName("Emerald").SetQuantity(0).SetAlltime(0).SetValue(50000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(1000));
+        items.RegisterItem(Ruby=Ruby.SetName("Ruby").SetQuantity(0).SetAlltime(0).SetValue(100000).SetRarity(ItemRarity.Rare).SetType(ItemType.Gem).SetProbability(750));
+        items.RegisterItem(Onyx=Onyx.SetName("Onyx").SetQuantity(0).SetAlltime(0).SetValue(250000).SetRarity(ItemRarity.Epic).SetType(ItemType.Gem).SetProbability(200));
+        items.RegisterItem(Quartz=Quartz.SetName("Quartz").SetQuantity(0).SetAlltime(0).SetValue(500000).SetRarity(ItemRarity.Epic).SetType(ItemType.Gem).SetProbability(20));
+        items.RegisterItem(Diamond=Diamond.SetName("Diamond").SetQuantity(0).SetAlltime(0).SetValue(5000000).SetRarity(ItemRarity.Legendary).SetType(ItemType.Gem).SetProbability(7));
         items.RegisterItem(Bronze_bar=Bronze_bar.SetName("Bronze bar").SetQuantity(0).SetAlltime(0).SetValue(250).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting));
         items.RegisterItem(Iron_bar=Iron_bar.SetName("Iron bar").SetQuantity(0).SetAlltime(0).SetValue(1000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting));
         items.RegisterItem(Silver_bar=Silver_bar.SetName("Silver bar").SetQuantity(0).SetAlltime(0).SetValue(2500).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting));
         items.RegisterItem(Gold_bar=Gold_bar.SetName("Gold bar").SetQuantity(0).SetAlltime(0).SetValue(25000).SetRarity(ItemRarity.Rare).SetType(ItemType.Crafting));
         items.RegisterItem(Titanium_bar=Titanium_bar.SetName("Titanium bar").SetQuantity(0).SetAlltime(0).SetValue(5000000).SetRarity(ItemRarity.Legendary).SetType(ItemType.Crafting));
-        items.RegisterItem(Ardigal=Ardigal.SetName("Ardigal").SetQuantity(0).SetAlltime(0).SetValue(10000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ingredient).SetProbability(1000));
+        items.RegisterItem(Ardigal=Ardigal.SetName("Ardigal").SetQuantity(0).SetAlltime(0).SetValue(10000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ingredient).SetProbability(2000));
         items.RegisterItem(Sito=Sito.SetName("Sito").SetQuantity(0).SetAlltime(0).SetValue(25000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Ingredient).SetProbability(500));
         items.RegisterItem(Volencia=Volencia.SetName("Volencia").SetQuantity(0).SetAlltime(0).SetValue(500000).SetRarity(ItemRarity.Epic).SetType(ItemType.Ingredient).SetProbability(250));
         items.RegisterItem(Fellstalk=Fellstalk.SetName("Fellstalk").SetQuantity(0).SetAlltime(0).SetValue(1000000).SetRarity(ItemRarity.Epic).SetType(ItemType.Ingredient).SetProbability(100));
@@ -78,8 +74,8 @@
         items.RegisterItem(Vial_of_water=Vial_of_water.SetName("Empty vial").SetQuantity(0).SetAlltime(0).SetValue(500).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting).SetPrice(1000).SetStoreCategory(StoreCategory.Items));
         items.RegisterItem(Gunpowder=Gunpowder.SetName("Gunpowder").SetQuantity(0).SetAlltime(0).SetValue(1250).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting).SetPrice(2500).SetStoreCategory(StoreCategory.Items));
         items.RegisterItem(Logs=Logs.SetName("Logs").SetQuantity(0).SetAlltime(0).SetValue(500).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Crafting));
-        items.RegisterItem(Oil=Oil.SetName("Oil").SetDisplayInInventory(false).SetQuantity(0).SetAlltime(0).SetValue(500).SetRarity(ItemRarity.Uncommon));
-        items.RegisterItem(Coins=Coins.SetName("Coins").SetDisplayInInventory(false).SetQuantity(0).SetAlltime(0).SetValue(1));
+        items.RegisterItem(Oil=Oil.SetName("Oil").SetDisplayInInventory(false).SetQuantity(0).SetAlltime(0).SetValue(0).SetRarity(ItemRarity.Uncommon));
+        items.RegisterItem(Coins=Coins.SetName("Coins").SetDisplayInInventory(false).SetQuantity(0).SetAlltime(0).SetValue(0));
         items.RegisterItem(Clicking_Potion=Clicking_Potion.SetName("Clicking Potion").SetQuantity(0).SetAlltime(0).SetValue(25000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Potion));
         items.RegisterItem(Smelting_Potion=Smelting_Potion.SetName("Smelting Potion").SetQuantity(0).SetAlltime(0).SetValue(10000).SetRarity(ItemRarity.Uncommon).SetType(ItemType.Potion));
         items.RegisterItem(Charming_Potion=Charming_Potion.SetName("Speech Potion").SetQuantity(0).SetAlltime(0).SetValue(50000).SetRarity(ItemRarity.Rare).SetType(ItemType.Potion));
@@ -139,6 +135,7 @@
 
     public InitializeProcessorSystem(processors: ProcessorSystem) {
         processors.Reset();
+     
 
         processors.RegisterItem(Furnace = Furnace.SetName("Furnace").Reset().AddRecipe(Bronze_bar_processor_recipe).AddRecipe(Iron_bar_processor_recipe).AddRecipe(Silver_bar_processor_recipe).AddRecipe(Gold_bar_processor_recipe).AddRecipe(Titanium_bar_processor_recipe));
         processors.RegisterItem(Cauldron = Cauldron.SetName("Cauldron").Reset().AddRecipe(Smelting_Potion_processor_recipe).AddRecipe(Clicking_Potion_processor_recipe).AddRecipe(Charming_Potion_processor_recipe).AddRecipe(Alchemy_Potion_processor_recipe).SetCapacity(1));
@@ -158,6 +155,7 @@
 
         stats.RegisterItem(StatVersionNumber = StatVersionNumber.SetName("Version").SetValue(0));
         stats.RegisterItem(StatRockClicked = StatRockClicked.SetName("Manual clicks").SetValue(0));
+        stats.RegisterItem(StatTimePlayed = StatTimePlayed.SetName("Time played").SetValue(0));
     }
 
     public InitializeAchievementSystem(achievements: AchievementSystem) {
@@ -174,19 +172,38 @@
         achievements.RegisterItem(AchItemCatCrafting = AchItemCatCrafting.SetName("Craftsman").SetCondition(new AchievementItemType(ItemType.Crafting)).SetCompleted(false));
         achievements.RegisterItem(AchItemCatIngredient = AchItemCatIngredient.SetName("Shaman").SetCondition(new AchievementItemType(ItemType.Ingredient)).SetCompleted(false));
         achievements.RegisterItem(AchItemCatPotion = AchItemCatPotion.SetName("Wizard").SetCondition(new AchievementItemType(ItemType.Potion)).SetCompleted(false));
+    }
 
+    public InitializePrestigeSystem(prestige: PrestigeSystem) {
+        prestige.Reset();
+
+        prestige.RegisterItem(StonePrestige = StonePrestige.SetActive(true).SetItem(Stone));
+        prestige.RegisterItem(CopperPrestige = CopperPrestige.SetActive(false).SetItem(Copper).AddRequirements(Achievement[5] = [CopperPrestigeStoneReq, CopperPrestigeLumberReq, CopperPrestigeTitBarReq, CopperPrestigeCoinsReq, CopperPrestigeDiamondsReq]).AddRewards(Upgrade[3] = [CopperPrestigeValueUpgrade, CopperPrestigeClickingUpgrade, CopperPrestigeProcessorUpgrade]));
+
+        if (game) {
+            game.prestigeUI.draw();
+        }
     }
 
     initializeData() {
-        this.InitializeItemSystem(this.itemSystem);
-        this.InitializeGathererSystem(this.gathererSystem);
-        this.InitializeUpgradeSystem(this.upgradeSystem);
-        this.InitializeProcessorSystem(this.processorSystem);
-        this.InitializeBuffSystem(this.buffSystem);
-        this.InitializeStatisticSystem(this.statisticSystem);
-        this.InitializeAchievementSystem(this.achievementSystem);
+        this.hardReset();
+        
     }
 
+    softReset() {
+        this.InitializeItemSystem(this.itemSystem);
+        this.InitializeUpgradeSystem(this.upgradeSystem);
+        this.InitializeGathererSystem(this.gathererSystem);
+        this.InitializeProcessorSystem(this.processorSystem);
+        this.InitializeBuffSystem(this.buffSystem);
+    }
+
+    hardReset() {
+        this.softReset();
+        this.InitializeStatisticSystem(this.statisticSystem);
+        this.InitializeAchievementSystem(this.achievementSystem);
+        this.InitializePrestigeSystem(this.prestigeSystem);
+    }
 
     save() {
         var savedata;
@@ -198,6 +215,7 @@
         var buffsave = new Array<BuffSave>();
         var statsave = new Array<StatisticSave>();
         var achsave = new Array<AchievementSave>();
+        var presave = new Array<PrestigeSave>();
 
         // SAVE ITEMS
         var i;
@@ -244,8 +262,12 @@
         for (i = 0; i < this.achievementSystem.items.length; ++i) {
             achsave.push(new AchievementSave(this.achievementSystem.items[i].Completed));
         }
+        // Save prestige
+        for (i = 0; i < this.prestigeSystem.items.length; ++i) {
+            presave.push(new PrestigeSave(this.prestigeSystem.items[i].Active));
+        }
 
-        savedata = { Items: itemsave, Gatherers: machinesave, Upgrades : upgradesave, InventoryConfig: configsave, Processors: processorsave, Buffs: buffsave, Stats: statsave, Achievements: achsave};
+        savedata = { Items: itemsave, Gatherers: machinesave, Upgrades : upgradesave, InventoryConfig: configsave, Processors: processorsave, Buffs: buffsave, Stats: statsave, Achievements: achsave, Prestiges: presave};
         localStorage.setItem("save", LZString.compressToBase64(JSON.stringify(savedata)));
 
     }
@@ -253,6 +275,8 @@
     load() {
         if (localStorage.getItem("save") !== null) {
             var loaddata;
+
+            // Compatibility for version 0.1 -> future
             try {
                 var loadtext = LZString.decompressFromBase64(localStorage.getItem("save"));
                 loaddata = JSON.parse(loadtext);
@@ -260,6 +284,7 @@
                 console.log(e + ": Looks like you're transfering to the new save format. This error should not occur again.");
                 loaddata = JSON.parse(localStorage.getItem("save"));
             }
+
             // Load items.
             var i;
             if (loaddata.Items) {
@@ -343,10 +368,26 @@
                     }
                 }
             }
+            // Load prestige
+            if (loaddata.Prestiges) {
+                for (i = 0; i < loaddata.Prestiges.length; ++i) {
+                    if (loaddata.Prestiges[i]) {
+                        this.prestigeSystem.items[i].Active = loaddata.Prestiges[i].Active;
+                    }
+                }
+            }
 
         } else {
             this.save();
         }
+    }
+}
+
+class PrestigeSave {
+    public Active: boolean;
+
+    constructor(active: boolean) {
+        this.Active = active;
     }
 }
 

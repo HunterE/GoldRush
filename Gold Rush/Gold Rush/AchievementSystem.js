@@ -75,6 +75,10 @@ var AchievementListener = (function () {
 
     AchievementListener.prototype.condition = function () {
     };
+
+    AchievementListener.prototype.getprogress = function () {
+        return 0;
+    };
     return AchievementListener;
 })();
 
@@ -90,7 +94,7 @@ var AchievementAlltime = (function (_super) {
         for (var i = 0; i < this.Variables.length; ++i) {
             names.push(this.Variables[i].Name);
         }
-        return "Have an all time total of " + formatNumber(this.Requirement) + " " + names.join(", ");
+        return "Have an all time total of " + formatNumber(this.Requirement) + " " + names.join(", ") + ".";
     };
 
     AchievementAlltime.prototype.condition = function () {
@@ -105,7 +109,45 @@ var AchievementAlltime = (function (_super) {
         }
         return false;
     };
+
+    AchievementAlltime.prototype.getprogress = function () {
+        return this.Variables[0].Alltime / this.Requirement;
+    };
     return AchievementAlltime;
+})(AchievementListener);
+
+var AchievementQuantity = (function (_super) {
+    __extends(AchievementQuantity, _super);
+    function AchievementQuantity(v, r) {
+        this.Variables = v;
+        this.Requirement = r;
+        _super.call(this);
+    }
+    AchievementQuantity.prototype.tooltip = function () {
+        var names = new Array();
+        for (var i = 0; i < this.Variables.length; ++i) {
+            names.push(this.Variables[i].Name);
+        }
+        return "Have " + formatNumber(this.Requirement) + " " + names.join(", ") + " in your inventory.";
+    };
+
+    AchievementQuantity.prototype.condition = function () {
+        var total = 0;
+
+        for (var i = 0; i < this.Variables.length; ++i) {
+            total += this.Variables[i].Quantity;
+        }
+
+        if (total >= this.Requirement) {
+            return true;
+        }
+        return false;
+    };
+
+    AchievementQuantity.prototype.getprogress = function () {
+        return this.Variables[0].Quantity / this.Requirement;
+    };
+    return AchievementQuantity;
 })(AchievementListener);
 
 var AchievementItemType = (function (_super) {
@@ -115,7 +157,7 @@ var AchievementItemType = (function (_super) {
         _super.call(this);
     }
     AchievementItemType.prototype.tooltip = function () {
-        return "Discover every type of " + ItemType[this.ItemType];
+        return "Discover every type of " + ItemType[this.ItemType] + ".";
     };
 
     AchievementItemType.prototype.condition = function () {
@@ -129,6 +171,24 @@ var AchievementItemType = (function (_super) {
             }
         }
         return true;
+    };
+
+    AchievementItemType.prototype.getprogress = function () {
+        var need = 0;
+        var have = 0;
+
+        for (var x = 0; x < game.itemSystem.items.length; ++x) {
+            var item = game.itemSystem.items[x];
+
+            if (item.Type === this.ItemType) {
+                need++;
+                if (item.Alltime > 0) {
+                    have++;
+                }
+            }
+        }
+
+        return have / need;
     };
     return AchievementItemType;
 })(AchievementListener);
@@ -149,6 +209,10 @@ var AchievementStatistic = (function (_super) {
             return true;
         }
         return false;
+    };
+
+    AchievementStatistic.prototype.getprogress = function () {
+        return this.Variable.Value / this.Requirement;
     };
     return AchievementStatistic;
 })(AchievementListener);

@@ -60,7 +60,7 @@
          return this;
      }
      public SetCompleted(com: boolean) {
-         this.Completed = com
+         this.Completed = com;
          return this;
      }
      public GetTooltip(): string {
@@ -75,6 +75,10 @@ class AchievementListener {
 
      condition() {
          
+     }
+
+     getprogress(): number {
+         return 0;
      }
  }
 
@@ -93,7 +97,7 @@ class AchievementAlltime extends AchievementListener {
         for (var i = 0; i < this.Variables.length; ++i) {
             names.push(this.Variables[i].Name);
         }
-        return "Have an all time total of " + formatNumber(this.Requirement) + " " + names.join(", ");
+        return "Have an all time total of " + formatNumber(this.Requirement) + " " + names.join(", ") + ".";
     }
 
      condition() {
@@ -108,6 +112,46 @@ class AchievementAlltime extends AchievementListener {
          }
          return false;
      }
+
+     getprogress() {
+         return this.Variables[0].Alltime / this.Requirement;
+     }
+ }
+
+ class AchievementQuantity extends AchievementListener {
+     Variables: any;
+     Requirement: number;
+
+     constructor(v: any[], r: number) {
+         this.Variables = v;
+         this.Requirement = r;
+         super();
+     }
+
+     tooltip() {
+         var names = new Array<string>();
+         for (var i = 0; i < this.Variables.length; ++i) {
+             names.push(this.Variables[i].Name);
+         }
+         return "Have " + formatNumber(this.Requirement) + " " + names.join(", ") + " in your inventory.";
+     }
+
+     condition() {
+         var total = 0;
+
+         for (var i = 0; i < this.Variables.length; ++i) {
+             total += this.Variables[i].Quantity;
+         }
+
+         if (total >= this.Requirement) {
+             return true;
+         }
+         return false;
+     }
+
+     getprogress() {
+         return this.Variables[0].Quantity / this.Requirement;
+     }
  }
 
  class AchievementItemType extends AchievementListener {
@@ -119,7 +163,7 @@ class AchievementAlltime extends AchievementListener {
      }
 
      tooltip() {
-         return "Discover every type of " + ItemType[this.ItemType];
+         return "Discover every type of " + ItemType[this.ItemType] + ".";
      }
 
      condition() {
@@ -133,6 +177,24 @@ class AchievementAlltime extends AchievementListener {
              }
          }
          return true;
+     }
+
+     getprogress() {
+         var need = 0;
+         var have = 0;
+
+         for (var x = 0; x < game.itemSystem.items.length; ++x) {
+             var item = game.itemSystem.items[x];
+
+             if (item.Type === this.ItemType) {// If this is the type of item we're inspecting.
+                 need++;
+                 if (item.Alltime > 0) {// If we don't have any of it
+                     have++;
+                 }
+             }
+         }
+
+         return have / need;
      }
  }
 
@@ -155,6 +217,10 @@ class AchievementAlltime extends AchievementListener {
              return true;
          }
          return false;
+     }
+
+     getprogress() {
+         return this.Variable.Value / this.Requirement;
      }
  }
 
