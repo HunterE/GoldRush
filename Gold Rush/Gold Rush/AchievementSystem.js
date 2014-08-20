@@ -76,7 +76,15 @@ var AchievementListener = (function () {
     AchievementListener.prototype.condition = function () {
     };
 
-    AchievementListener.prototype.getprogress = function () {
+    AchievementListener.prototype.getPercentage = function () {
+        return 0;
+    };
+
+    AchievementListener.prototype.getCurrentProgress = function () {
+        return 0;
+    };
+
+    AchievementListener.prototype.getMaxProgress = function () {
         return 0;
     };
     return AchievementListener;
@@ -110,8 +118,16 @@ var AchievementAlltime = (function (_super) {
         return false;
     };
 
-    AchievementAlltime.prototype.getprogress = function () {
-        return this.Variables[0].Alltime / this.Requirement;
+    AchievementAlltime.prototype.getPercentage = function () {
+        return this.getCurrentProgress() / this.getMaxProgress();
+    };
+
+    AchievementAlltime.prototype.getCurrentProgress = function () {
+        return this.Variables[0].Alltime;
+    };
+
+    AchievementAlltime.prototype.getMaxProgress = function () {
+        return this.Requirement;
     };
     return AchievementAlltime;
 })(AchievementListener);
@@ -144,8 +160,16 @@ var AchievementQuantity = (function (_super) {
         return false;
     };
 
-    AchievementQuantity.prototype.getprogress = function () {
+    AchievementQuantity.prototype.getPercentage = function () {
         return this.Variables[0].Quantity / this.Requirement;
+    };
+
+    AchievementQuantity.prototype.getCurrentProgress = function () {
+        return this.Variables[0].Quantity;
+    };
+
+    AchievementQuantity.prototype.getMaxProgress = function () {
+        return this.Requirement;
     };
     return AchievementQuantity;
 })(AchievementListener);
@@ -154,6 +178,7 @@ var AchievementItemType = (function (_super) {
     __extends(AchievementItemType, _super);
     function AchievementItemType(it) {
         this.ItemType = it;
+
         _super.call(this);
     }
     AchievementItemType.prototype.tooltip = function () {
@@ -173,7 +198,7 @@ var AchievementItemType = (function (_super) {
         return true;
     };
 
-    AchievementItemType.prototype.getprogress = function () {
+    AchievementItemType.prototype.getPercentage = function () {
         var need = 0;
         var have = 0;
 
@@ -187,8 +212,36 @@ var AchievementItemType = (function (_super) {
                 }
             }
         }
-
         return have / need;
+    };
+
+    AchievementItemType.prototype.getCurrentProgress = function () {
+        var have = 0;
+
+        for (var x = 0; x < game.itemSystem.items.length; ++x) {
+            var item = game.itemSystem.items[x];
+
+            if (item.Type === this.ItemType) {
+                if (item.Alltime > 0) {
+                    have++;
+                }
+            }
+        }
+
+        return have;
+    };
+
+    AchievementItemType.prototype.getMaxProgress = function () {
+        var need = 0;
+
+        for (var x = 0; x < game.itemSystem.items.length; ++x) {
+            var item = game.itemSystem.items[x];
+
+            if (item.Type === this.ItemType) {
+                need++;
+            }
+        }
+        return need;
     };
     return AchievementItemType;
 })(AchievementListener);
@@ -211,8 +264,16 @@ var AchievementStatistic = (function (_super) {
         return false;
     };
 
-    AchievementStatistic.prototype.getprogress = function () {
+    AchievementStatistic.prototype.getPercentage = function () {
         return this.Variable.Value / this.Requirement;
+    };
+
+    AchievementStatistic.prototype.getCurrentProgress = function () {
+        return this.Variable.Value;
+    };
+
+    AchievementStatistic.prototype.getMaxProgress = function () {
+        return this.Requirement;
     };
     return AchievementStatistic;
 })(AchievementListener);

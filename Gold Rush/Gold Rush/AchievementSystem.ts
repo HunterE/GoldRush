@@ -77,7 +77,15 @@ class AchievementListener {
          
      }
 
-     getprogress(): number {
+     getPercentage(): number {
+         return 0;
+     }
+
+     getCurrentProgress(): number {
+         return 0;
+     }
+
+     getMaxProgress(): number {
          return 0;
      }
  }
@@ -113,9 +121,17 @@ class AchievementAlltime extends AchievementListener {
          return false;
      }
 
-     getprogress() {
-         return this.Variables[0].Alltime / this.Requirement;
+     getPercentage() {
+         return this.getCurrentProgress() / this.getMaxProgress();
      }
+
+     getCurrentProgress() {
+         return this.Variables[0].Alltime;
+     }
+
+    getMaxProgress() {
+        return this.Requirement;
+    }
  }
 
  class AchievementQuantity extends AchievementListener {
@@ -149,8 +165,16 @@ class AchievementAlltime extends AchievementListener {
          return false;
      }
 
-     getprogress() {
+     getPercentage() {
          return this.Variables[0].Quantity / this.Requirement;
+     }
+
+     getCurrentProgress() {
+         return this.Variables[0].Quantity;
+     }
+
+     getMaxProgress() {
+         return this.Requirement;
      }
  }
 
@@ -159,6 +183,7 @@ class AchievementAlltime extends AchievementListener {
 
      constructor(it: ItemType) {
          this.ItemType = it;
+
          super();
      }
 
@@ -179,7 +204,7 @@ class AchievementAlltime extends AchievementListener {
          return true;
      }
 
-     getprogress() {
+     getPercentage() {
          var need = 0;
          var have = 0;
 
@@ -193,10 +218,38 @@ class AchievementAlltime extends AchievementListener {
                  }
              }
          }
-
          return have / need;
      }
- }
+
+     getCurrentProgress() {
+         var have = 0;
+
+         for (var x = 0; x < game.itemSystem.items.length; ++x) {
+             var item = game.itemSystem.items[x];
+
+             if (item.Type === this.ItemType) {// If this is the type of item we're inspecting.
+                 if (item.Alltime > 0) {// If we don't have any of it
+                     have++;
+                 }
+             }
+         }
+
+         return have;
+     }
+
+     getMaxProgress() {
+         var need = 0;
+
+         for (var x = 0; x < game.itemSystem.items.length; ++x) {
+             var item = game.itemSystem.items[x];
+
+             if (item.Type === this.ItemType) { // If this is the type of item we're inspecting.
+                 need++;
+             }
+         }
+         return need;
+     }
+  }
 
  class AchievementStatistic extends AchievementListener {
      Variable: any;
@@ -219,8 +272,16 @@ class AchievementAlltime extends AchievementListener {
          return false;
      }
 
-     getprogress() {
+     getPercentage() {
          return this.Variable.Value / this.Requirement;
+     }
+
+     getCurrentProgress() {
+         return this.Variable.Value;
+     }
+
+     getMaxProgress() {
+         return this.Requirement;
      }
  }
 
